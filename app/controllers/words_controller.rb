@@ -8,9 +8,9 @@ class WordsController < ApplicationController
   end
 
   def create
-    @word = Word.new(words_params)
+    @word = Word.new(word_params)
     if @word.save
-      redirect_to(words_path)
+      redirect_to(words_path, status: 201)
     else
       render :new
     end
