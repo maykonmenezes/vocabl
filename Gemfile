@@ -16,6 +16,7 @@ gem 'simple_form'
 
 group :development, :test do
   gem 'rspec-rails', '~> 4.0.0.beta'
+  gem 'pry-rails'
 end
 
 group :development do
