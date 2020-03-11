@@ -7,6 +7,8 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.1' # Bundle edge Rails instead: gem 'rails', 
 gem 'pg'
 gem 'haml-rails', '~> 2.0'
 gem 'puma', '~> 4.1' # Use Puma as the app server
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
 gem 'webpacker', '~> 4.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
