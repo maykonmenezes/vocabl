@@ -16,6 +16,10 @@ class WordsController < ApplicationController
     end
   end
 
+  def show
+    @word = Word.find(params[:id])
+  end
+
   def word_params
     params.require(:word).permit(:value, :language)
   end
