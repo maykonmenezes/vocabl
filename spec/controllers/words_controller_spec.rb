@@ -160,19 +160,48 @@ RSpec.describe WordsController do
   end
 
   describe 'GET edit' do
-    before { get :edit, params: params }
+    subject { get :edit, params: params }
 
-    let(:params) do
-      { id: word.id }
+    context 'when user is signed in' do
+      let(:user) { create(:user) }
+      let(:params) { { id: word.id } }
+      let!(:word) { create(:word) }
+
+      before do
+        sign_in(user)
+        subject
+      end
+
+      it 'assigns @word' do
+        expect(assigns(:word)).to eq(word)
+      end
+
+      it 'renders the edit template' do
+        expect(response).to render_template(:edit)
+      end
+
+      it do
+        subject
+        expect(response).to have_http_status(200)
+      end
     end
-    let!(:word) { create(:word) }
 
-    it 'assigns @word' do
-      expect(assigns(:word)).to eq(word)
-    end
+    context 'when user is NOT signed in' do
+      let(:params) { { id: word.id } }
+      let!(:word) { create(:word) }
 
-    it 'renders the edit template' do
-      expect(response).to render_template(:edit)
+      it 'does not assigns @word' do
+        expect(assigns(:word)).to eq(nil)
+      end
+
+      it 'does not renders the edit template' do
+        expect(response).not_to render_template(:edit)
+      end
+
+      it do
+        subject
+        expect(response).to have_http_status(302)
+      end
     end
   end
 
@@ -183,29 +212,80 @@ RSpec.describe WordsController do
     let!(:language_1) { create(:language, name: 'English') }
     let!(:language_2) { create(:language, name: 'Portuguese') }
 
-    context 'valid params' do
-      let(:params) do
-        { id: word.id, word: { content: 'dog' , language_id: language_2.id } }
+    context 'when user is signed in' do
+      let(:user) { create(:user) }
+
+      before do
+        sign_in(user)
       end
 
-      it 'updates word' do
-        expect { subject }.to change { word.reload.content }
-        .from('cat').to('dog')
-        .and change { word.reload.language }
-        .from(language_1)
-        .to(language_2)
+      context 'valid params' do
+        let(:params) do
+          { id: word.id, word: { content: 'dog' , language_id: language_2.id } }
+        end
+
+        it 'updates word' do
+          expect { subject }.to change { word.reload.content }
+          .from('cat').to('dog')
+          .and change { word.reload.language }
+          .from(language_1)
+          .to(language_2)
+        end
+
+        it do
+          subject
+          expect(response).to have_http_status(302)
+        end
+      end
+
+      context 'invalid params' do
+        let(:params) do
+          { id: word.id, word: { content: '' } }
+        end
+
+        it 'does not create new word' do
+          expect { subject }.not_to change { word.reload.content }
+        end
+
+        it do
+          subject
+          expect(response).to have_http_status(200)
+        end
       end
     end
 
-    context 'invalid params' do
-      let(:params) do
-        { id: word.id, word: { content: '' } }
+    context 'when user is NOT signed in' do
+      context 'valid params' do
+        let(:params) do
+          { id: word.id, word: { content: 'dog' , language_id: language_2.id } }
+        end
+
+        it 'does not updates word' do
+          expect { subject }.not_to change { word.reload.content }
+        end
+
+        it do
+          subject
+          expect(response).to have_http_status(302)
+        end
       end
 
-      it 'does not create new word' do
-        expect { subject }.not_to change { word.reload.content }
+      context 'invalid params' do
+        let(:params) do
+          { id: word.id, word: { content: '' } }
+        end
+
+        it 'does not update word' do
+          expect { subject }.not_to change { word.reload.content }
+        end
+
+        it do
+          subject
+          expect(response).to have_http_status(302)
+        end
       end
     end
+
   end
 
   describe 'DELETE destroy' do
@@ -213,13 +293,37 @@ RSpec.describe WordsController do
 
     let!(:word) { create(:word) }
 
-    context 'valid params' do
-      let(:params) do
-        { id: word.id }
-      end
+    context 'when user is signed in' do
+      let(:user) { create(:user) }
 
-      it 'deletes word' do
-        expect { subject }.to change(Word, :count).from(1).to(0)
+      before { sign_in(user) }
+
+      context 'valid params' do
+        let(:params) { { id: word.id } }
+
+        it 'deletes word' do
+          expect { subject }.to change(Word, :count).from(1).to(0)
+        end
+
+        it do
+          subject
+          expect(response).to have_http_status(302)
+        end
+      end
+    end
+
+    context 'when user is NOT signed in' do
+      context 'valid params' do
+        let(:params) { { id: word.id } }
+
+        it 'does not delete word' do
+          expect { subject }.not_to change(Word, :count)
+        end
+
+        it do
+          subject
+          expect(response).to have_http_status(302)
+        end
       end
     end
   end
