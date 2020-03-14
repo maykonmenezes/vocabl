@@ -33,6 +33,12 @@ class WordsController < ApplicationController
     @word = Word.find(params[:id])
   end
 
+  def destroy
+    @word = Word.find(params[:id])
+    @word.destroy
+    redirect_to(words_path)
+  end
+
   def word_params
     params.require(:word).permit(:content, :language_id)
   end
