@@ -43,8 +43,9 @@ RSpec.describe WordsController do
     subject { post :create, params: params }
 
     context 'valid params' do
+      let!(:language) { create(:language) }
       let(:params) do
-        { word: { content: 'dog' } }
+        { word: { content: 'dog', language_id: language.id } }
       end
 
       it 'creates a new word' do
