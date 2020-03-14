@@ -25,8 +25,8 @@ class WordsController < ApplicationController
   end
 
   def update
+    authorize @word
     if @word.update(word_params)
-      authorize @word
       redirect_to(word_path(@word))
     else
       render :edit
