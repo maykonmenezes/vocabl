@@ -16,6 +16,19 @@ class WordsController < ApplicationController
     end
   end
 
+  def edit
+    @word = Word.find(params[:id])
+  end
+
+  def update
+    @word = Word.find(params[:id])
+    if @word.update(word_params)
+      redirect_to(word_path(@word))
+    else
+      render :edit
+    end
+  end
+
   def show
     @word = Word.find(params[:id])
   end
