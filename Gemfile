@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'pundit'
 gem 'kaminari'
+gem 'nested_form'
 gem 'bootstrap4-kaminari-views'
 gem 'language_list', '~> 1.2.1'
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
