@@ -10,6 +10,7 @@ gem 'puma', '~> 4.1' # Use Puma as the app server
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
 gem 'devise'
+gem 'pundit'
 gem 'language_list', '~> 1.2.1'
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
 gem 'webpacker', '~> 4.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker

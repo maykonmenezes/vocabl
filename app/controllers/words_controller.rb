@@ -20,8 +20,13 @@ class WordsController < ApplicationController
     end
   end
 
+  def edit
+    authorize @word
+  end
+
   def update
     if @word.update(word_params)
+      authorize @word
       redirect_to(word_path(@word))
     else
       render :edit
@@ -29,6 +34,7 @@ class WordsController < ApplicationController
   end
 
   def destroy
+    authorize @word
     @word.destroy
     redirect_to(words_path)
   end
