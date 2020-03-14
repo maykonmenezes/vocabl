@@ -21,6 +21,8 @@ gem 'simple_form'
 group :development, :test do
   gem 'rspec-rails', '~> 4.0.0.beta'
   gem 'pry-rails'
+  gem 'faker'
+  gem 'contemporary_words', '~> 0.0.4'
 end
 
 group :development do
@@ -34,7 +36,6 @@ group :test do
   gem 'capybara', '>= 2.15' # Adds support for Capybara system testing and selenium driver
   gem 'selenium-webdriver'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'webdrivers' # Easy installation and use of web drivers to run system tests with browsers
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
