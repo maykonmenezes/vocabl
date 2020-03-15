@@ -1,5 +1,4 @@
-%h1 Words
-%p
+%h1 All Words
 %table.table
   %thead
     %tr
@@ -25,7 +24,7 @@
         %td
           = word.language&.name
         %td
-          = word.user&.email
+          = word.user&.email.gsub(/.{0,4}@/, '####@')
         %td
           = word.translations.size
         %td
