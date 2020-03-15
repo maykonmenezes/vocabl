@@ -4,6 +4,7 @@ module Words
       @word = word
       @answer = answer
     end
+
     def call
       check_answer
     end
@@ -13,7 +14,7 @@ module Words
     attr_reader :word, :answer
 
     def check_answer
-      word.translations.where(:content: answer).exists?
+      word.translations.where(content: answer).exists?
     end
   end
 end
