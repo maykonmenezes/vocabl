@@ -42,7 +42,7 @@ RSpec.describe GamesController do
       let(:params) do
         { id: game.id }
       end
-      let!(:game) { create(:game) }
+      let!(:game) { create(:game, user: user) }
 
       it 'assigns @game' do
         subject
