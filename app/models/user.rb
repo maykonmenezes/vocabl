@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :words
+  has_many :games
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
