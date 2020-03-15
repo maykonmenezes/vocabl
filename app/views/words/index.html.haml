@@ -29,8 +29,13 @@
           = word.translations.size
         %td
           = link_to('Show', word_path(word), class: 'btn btn-primary')
-          = link_to('Edit', edit_word_path(word), class: 'btn btn-primary')
-          = link_to('Delete', word_path(word), class: 'btn btn-danger', method: :delete)
+          - if policy(word).edit?
+            = link_to('Edit', edit_word_path(word), class: 'btn btn-primary')
+          - if policy(word).destroy?
+            = link_to('Delete',
+              word_path(word),
+              class: 'btn btn-primary',
+              method: :delete, data: { confirm: 'Are you sure?' })
 = paginate @words, theme: 'twitter-bootstrap-4',
                    pagination_class: "pagination-centered",
                    nav_class: "d-inline-b"
