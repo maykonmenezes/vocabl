@@ -77,9 +77,9 @@ RSpec.describe WordsController do
       before { sign_in(user) }
 
       context 'valid params' do
-        let!(:language) { create(:language) }
+        let!(:language_1) { create(:language) }
         let(:params) do
-          { word: { content: 'dog', language_id: language.id } }
+          { word: { content: 'dog', language_id: language_1.id } }
         end
 
         it 'creates a new word' do
@@ -89,6 +89,36 @@ RSpec.describe WordsController do
         it do
           subject
           expect(response).to have_http_status(302)
+        end
+
+        context 'when some translation is present' do
+          let!(:language_2) { create(:language, :portuguese) }
+          let(:params) do
+            { word:
+              {
+                content: 'cat',
+                language_id: language_1.id,
+                translations_attributes:
+                  {
+                    '1541932687026' =>
+                    {
+                      content: 'gato',
+                      language_id: language_2.id,
+                      _destroy: false
+                    }
+                  }
+              }
+            }
+          end
+
+          it 'creates a new word' do
+            expect { subject }.to change(Word, :count).from(0).to(2)
+          end
+
+          it 'creates translation for last word' do
+            subject
+            expect(Word.first.reload.translations.count).to eq(1)
+          end
         end
       end
 
