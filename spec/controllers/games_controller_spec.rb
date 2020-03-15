@@ -43,7 +43,7 @@ RSpec.describe GamesController do
         { id: game.id }
       end
       let!(:game) { create(:game, user: user) }
-      let!(:word) { create(:word) }
+      let!(:word) { create(:word, :with_translations) }
 
       it 'assigns @game' do
         subject
