@@ -1,4 +1,11 @@
 %h1
   Game
-  = @game.id
-= @game.user.email
+  \##{@game.id}
+%p
+  Good Answers:
+  = @game.good_answers_count
+%p
+  Bad Answers:
+  = @game.bad_answers_count
+%p
+  = @word.content
