@@ -13,6 +13,7 @@ gem 'devise'
 gem 'pundit'
 gem 'faker'
 gem 'kaminari'
+gem 'contemporary_words', '~> 0.0.4'
 gem 'nested_form'
 gem 'bootstrap4-kaminari-views'
 gem 'language_list', '~> 1.2.1'
@@ -26,7 +27,6 @@ gem 'simple_form'
 group :development, :test do
   gem 'rspec-rails', '~> 4.0.0.beta'
   gem 'pry-rails'
-  gem 'contemporary_words', '~> 0.0.4'
 end
 
 group :development do
