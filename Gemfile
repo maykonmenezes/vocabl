@@ -11,6 +11,7 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
 gem 'devise'
 gem 'pundit'
+gem 'faker'
 gem 'kaminari'
 gem 'nested_form'
 gem 'bootstrap4-kaminari-views'
@@ -25,7 +26,6 @@ gem 'simple_form'
 group :development, :test do
   gem 'rspec-rails', '~> 4.0.0.beta'
   gem 'pry-rails'
-  gem 'faker'
   gem 'contemporary_words', '~> 0.0.4'
 end
 
