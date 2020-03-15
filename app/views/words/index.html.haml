@@ -24,7 +24,7 @@
         %td
           = word.language&.name
         %td
-          = word.user&.email.gsub(/.{0,4}@/, '####@')
+          = word.user.secret_email
         %td
           = word.translations.size
         %td
