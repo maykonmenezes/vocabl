@@ -1,0 +1,17 @@
+@font-face {
+   font-family: 'LeagueSpartan-Bold';
+   src: url('/fonts/LeagueSpartan-Bold.otf')
+}
+
+@font-face {
+   font-family: 'NimbusSanL-BolNimbus';
+   src: url('/fonts/NimbusSanL-Reg.otf')
+}
+
+body, .btn {
+  font-family: 'LeagueSpartan-Bold';
+}
+
+td {
+  font-family: 'NimbusSanL-BolNimbus';
+}

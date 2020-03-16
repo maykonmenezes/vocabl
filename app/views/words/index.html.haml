@@ -34,7 +34,7 @@
           - if policy(word).destroy?
             = link_to('Delete',
               word_path(word),
-              class: 'btn btn-primary',
+              class: 'btn btn-danger',
               method: :delete, data: { confirm: 'Are you sure?' })
 = paginate @words, theme: 'twitter-bootstrap-4',
                    pagination_class: "pagination-centered",
