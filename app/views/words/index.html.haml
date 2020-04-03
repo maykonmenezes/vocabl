@@ -1,41 +1,58 @@
-%h1 All Words
-%table.table
-  %thead
-    %tr
-      %th
-        \#
-      %th
-        Content
-      %th
-        Language
-      %th
-        User
-      %th
-        Translations Count
-      %th
-        Actions
-  %tbody
-    - @words.each do |word|
-      %tr
-        %td
-          = word.id
-        %td
-          = word.content
-        %td
-          = word.language&.name
-        %td
-          = word.user&.secret_email
-        %td
-          = word.translations.size
-        %td
-          = link_to('Show', word_path(word), class: 'btn btn-primary')
-          - if policy(word).edit?
-            = link_to('Edit', edit_word_path(word), class: 'btn btn-primary')
-          - if policy(word).destroy?
-            = link_to('Delete',
-              word_path(word),
-              class: 'btn btn-danger',
-              method: :delete, data: { confirm: 'Are you sure?' })
-= paginate @words, theme: 'twitter-bootstrap-4',
-                   pagination_class: "pagination-centered",
-                   nav_class: "d-inline-b"
+-# %h1 All Words
+-# %table.table
+-#   %thead
+-#     %tr
+-#       %th
+-#         \#
+-#       %th
+-#         Content
+-#       %th
+-#         Language
+-#       %th
+-#         User
+-#       %th
+-#         Translations Count
+-#       %th
+-#         Actions
+-#   %tbody
+-#     - @words.each do |word|
+-#       %tr
+-#         %td
+-#           = word.id
+-#         %td
+-#           = word.content
+-#         %td
+-#           = word.language&.name
+-#         %td
+-#           = word.user&.secret_email
+-#         %td
+-#           = word.translations.size
+-#         %td
+-#           = link_to('Show', word_path(word), class: 'btn btn-primary')
+-#           - if policy(word).edit?
+-#             = link_to('Edit', edit_word_path(word), class: 'btn btn-primary')
+-#           - if policy(word).destroy?
+-#             = link_to('Delete',
+-#               word_path(word),
+-#               class: 'btn btn-danger',
+-#               method: :delete, data: { confirm: 'Are you sure?' })
+-# = paginate @words, theme: 'twitter-bootstrap-4',
+-#                    pagination_class: "pagination-centered",
+-# -#                    nav_class: "d-inline-b"
+-# .header
+-#   .container
+-#     .main_nav
+-#       .title
+-#         = link_to('Start new game', games_path, method: :post, class: 'btn btn-primary')
+  -# = link_to('Edit', edit_word_path(word), class: 'btn btn-primary')
+.title
+  %h1.heading Vocabl.
+  %h2.heading
+    %p A new way of learning foreing words
+    %br
+    %h1.heading
+      %a
+        = link_to('Start new game', games_path, method: :post, class: 'title icon')
+  %a.smoothscroll{:href => "#about"}
+    .mouse
+      .wheel

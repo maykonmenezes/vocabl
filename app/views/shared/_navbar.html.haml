@@ -1,28 +1,25 @@
-.container-fluid
-  .row
-    .col-md-12
-      %nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        %a.navbar-brand{href: root_path} Vocabl
-        #navbarNavAltMarkup.collapse.navbar-collapse
-          .navbar-nav
-            - if user_signed_in?
-              %li.nav-item
-                = link_to('New word', new_word_path, class: 'nav-link')
-              - if current_user.games.present?
-                %li.nav-item
-                  = link_to('Continue game', game_path(current_user.games.last), class: 'nav-link')
-              - else
-                %li.nav-item
-                  = link_to('Start new game', games_path, method: :post, class: 'nav-link')
-            - if user_signed_in?
-              %li.nav-item
-                = link_to('Edit registration', edit_user_registration_path, class: 'nav-link')
-            - else
-              %li.nav-item
-                = link_to('Register', new_user_registration_path, class: 'nav-link')
-            - if user_signed_in?
-              %li.nav-item
-                = link_to('Logout', destroy_user_session_path, class: 'nav-link', method: :delete)
-            - else
-              %li.nav-item
-                = link_to('Login', new_user_session_path, class: 'nav-link')
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  %a.navbar-brand{href: root_path} Vocabl
+  #navbarNavAltMarkup.collapse.navbar-collapse
+    .navbar-nav
+      - if user_signed_in?
+        %li.nav-item
+          = link_to('New word', new_word_path, class: 'nav-link')
+        - if current_user.games.present?
+          %li.nav-item
+            = link_to('Continue game', game_path(current_user.games.last), class: 'nav-link')
+        - else
+          %li.nav-item
+            = link_to('Start new game', games_path, method: :post, class: 'nav-link')
+      - if user_signed_in?
+        %li.nav-item
+          = link_to('Edit registration', edit_user_registration_path, class: 'nav-link')
+      - else
+        %li.nav-item
+          = link_to('Register', new_user_registration_path, class: 'nav-link')
+      - if user_signed_in?
+        %li.nav-item
+          = link_to('Logout', destroy_user_session_path, class: 'nav-link', method: :delete)
+      - else
+        %li.nav-item
+          = link_to('Login', new_user_session_path, class: 'nav-link')

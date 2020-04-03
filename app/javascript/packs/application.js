@@ -9,7 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require('jquery')
 require("packs/nested_form")
-
+require("packs/page")
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets

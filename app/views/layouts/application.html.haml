@@ -8,10 +8,35 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .container.mt-2
-      = render 'shared/navbar'
-      = render 'shared/messages'
-      .container-fluid
-        .row
-          .col-md-12
-            = yield
+    = render 'shared/messages'
+    %header#header
+      -# .main_nav
+      -#   .container
+      -#     .mobile-toggle
+      -#       %span
+      -#       %span
+      -#       %span
+      -#     %nav
+      -#       %ul
+      -#         %li
+      -#           %a.smoothscroll{:href => "#header"} Home
+      -#         %li
+      -#           %a.smoothscroll{:href => "#about"} About
+      -#         %li
+      -#           %a.smoothscroll{:href => "#skills"} Services
+      -#         %li
+      -#           %a.smoothscroll{:href => "#portfolio"} Work
+      -#         %li
+      -#           %a.smoothscroll{:href => "#contact"} Contact
+      = yield
+      %a.smoothscroll{:href => "#about"}
+        .scroll-down
+    %footer
+      .container
+        .nine.columns
+          %p Created by Maykon Menezes.
+        .three.columns
+          %span.typcn.typcn-social-facebook-circular.socialIcons
+          %span.typcn.typcn-social-instagram-circular.socialIcons
+          %span.typcn.typcn-social-google-plus-circular.socialIcons
+          %span.typcn.typcn-social-linkedin-circular.socialIcons
