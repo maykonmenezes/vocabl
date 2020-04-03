@@ -1,14 +1,15 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!, only: %i[create show]
+  before_action only: %i[create show]
 
   def create
-    game = current_user.games.create
+    guest = User.first
+    game = guest.games.create
     redirect_to(game)
   end
 
   def show
     @game = Game.find(params[:id])
-    authorize @game
+    # authorize @game
     @word = Words::RandomWord.new.call
   end
 end

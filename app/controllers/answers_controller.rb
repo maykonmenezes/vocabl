@@ -1,8 +1,8 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!, only: %i[create]
+  before_action only: %i[create]
 
   def create
-    authorize(game, :access?)
+    # authorize(game, :access?)
     @checker = Words::CheckAnswer.new(word, game, answer)
     @checker.call
     respond_to do |format|
